@@ -4,19 +4,19 @@ import { Link } from 'react-router-dom';
 const values = [
   {
     title: 'Clarity first',
-    desc: 'We strip away complexity. Every screen, every number, every chart exists to give you faster financial clarity — not to impress you with features.',
+    desc: 'We strip away complexity. Every screen, every number and every chart exists to give you faster financial clarity, not to impress you with features.',
   },
   {
     title: 'Privacy by design',
-    desc: 'Your financial data is yours. We encrypt everything, never sell your data, and only collect what is strictly necessary to run the product.',
+    desc: 'Your financial data is yours. We encrypt everything, never sell your data and only collect what is strictly necessary to run the product.',
   },
   {
     title: 'Built for real life',
-    desc: 'Moving home, switching jobs, managing a side hustle — UMET is designed for the financial situations people actually face, not idealised ones.',
+    desc: 'Moving home, switching jobs, managing a side hustle. UMET is designed for the financial situations people actually face, not idealised ones.',
   },
   {
     title: 'Honest and transparent',
-    desc: "No dark patterns, no surprise charges, no 'free trial' that auto-bills you. What you see is what you get.",
+    desc: 'No dark patterns, no surprise charges and no free trial that auto-bills you. What you see is what you get.',
   },
 ];
 
@@ -29,7 +29,7 @@ const pageGuide = [
 
 const About: React.FC = () => (
   <>
-    {/* ── Page banner header ── */}
+    {/* Page banner header */}
     <section className="bg-navy-900 relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-navy-950 via-navy-900 to-navy-800" />
       <div
@@ -46,7 +46,7 @@ const About: React.FC = () => (
       </div>
     </section>
 
-    {/* ── Main content + page guide ── */}
+    {/* Main content + page guide */}
     <section className="bg-cream py-16 px-6">
       <div className="max-w-6xl mx-auto flex gap-12">
 
@@ -56,7 +56,7 @@ const About: React.FC = () => (
           {/* Intro */}
           <div className="text-navy-900 leading-relaxed mb-10">
             <p className="text-base mb-4">
-              UMET — the <strong>Ultimate Move Expense Tracker</strong> — was built because
+              UMET, the <strong>Ultimate Move Expense Tracker</strong>, was built because
               personal finance tools were either too simple to be useful or too complex to use
               every day.
             </p>
@@ -72,22 +72,22 @@ const About: React.FC = () => (
             <div className="space-y-4 text-gray-600 text-sm leading-relaxed">
               <p>
                 UMET started as a solution to a simple problem: keeping track of all the costs that come
-                with moving home. Deposits, removals, new furniture, utility set-ups — the bills
-                pile up fast and it's easy to lose track.
+                with moving home. Deposits, removals, new furniture and utility set-ups add up fast
+                and it is easy to lose track.
               </p>
               <p>
                 What began as a lightweight tool for one specific life event quickly grew into
                 something broader. The same discipline that helps you manage a house move applies
-                to everyday budgeting: log it, categorise it, review it, improve it.
+                to everyday budgeting. Log it, categorise it, review it and improve it.
               </p>
               <p>
                 Today, UMET is a full personal finance tracker for anyone who wants a clean,
-                honest view of their income, spending, and budgets — without spreadsheets or
+                honest view of their income, spending and budgets without spreadsheets or
                 expensive subscription software.
               </p>
               <p>
-                We're built with British users in mind — GBP by default, sensible categories,
-                and no American-centric assumptions baked in.
+                We are built with British users in mind. GBP by default, sensible categories
+                and no assumptions baked in.
               </p>
             </div>
           </div>
@@ -109,12 +109,12 @@ const About: React.FC = () => (
           <div id="built-on-solid-foundations" className="mb-12">
             <h2 className="font-serif text-2xl font-bold text-navy-900 mb-4">Built on Solid Foundations</h2>
             <p className="text-sm text-gray-600 leading-relaxed mb-4">
-              UMET is a modern web application built with React, TypeScript, and Tailwind CSS on the
+              UMET is a modern web application built with React, TypeScript and Tailwind CSS on the
               frontend. The backend is a RESTful API. We use token-based authentication and all
               communication is encrypted over HTTPS.
             </p>
             <p className="text-sm text-gray-600 leading-relaxed">
-              We chose this stack for its speed, reliability, and longevity — tools we're confident
+              We chose this stack for its speed, reliability and longevity. Tools we are confident
               will still be running well five years from now.
             </p>
           </div>
@@ -149,8 +149,8 @@ const About: React.FC = () => (
       </div>
     </section>
 
-    {/* ── CTA ── */}
-    <section id="join-umet" className="py-16 px-6 bg-navy-900 text-white text-center relative overflow-hidden">
+    {/* CTA */}
+    <section id="join-umet" className="py-16 px-6 bg-[#6b0a0a] text-white text-center relative overflow-hidden">
       <div
         className="absolute inset-0 opacity-5"
         style={{
@@ -163,7 +163,7 @@ const About: React.FC = () => (
         <p className="text-gold-400 text-xs font-semibold uppercase tracking-widest mb-4">Join UMET</p>
         <h2 className="font-serif text-3xl font-bold mb-3">Join UMET today</h2>
         <p className="text-white/60 text-sm mb-8 leading-relaxed">
-          Free, private, and ready to use in under a minute.
+          Free, private and ready to use in under a minute.
         </p>
         <Link
           to="/register"

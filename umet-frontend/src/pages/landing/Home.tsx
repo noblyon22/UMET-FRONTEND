@@ -18,7 +18,7 @@ const benefits = [
       </svg>
     ),
     title: 'Monitor all income',
-    desc: 'Record salary, freelance work, rental income — every source in one clear view.',
+    desc: 'Record salary, freelance work and rental income. Every source in one clear view.',
   },
   {
     icon: (
@@ -36,7 +36,7 @@ const benefits = [
       </svg>
     ),
     title: 'Powerful analytics',
-    desc: 'Charts, trends, and breakdowns turn raw numbers into clear financial insight.',
+    desc: 'Charts, trends and breakdowns turn raw numbers into clear financial insight.',
   },
   {
     icon: (
@@ -54,22 +54,21 @@ const benefits = [
       </svg>
     ),
     title: 'Works on any device',
-    desc: 'Fully responsive — use it on desktop, tablet, or mobile without installing anything.',
+    desc: 'Fully responsive. Use it on desktop, tablet or mobile without installing anything.',
   },
 ];
 
 const stats = [
-  { icon: '❝', value: 'Free', label: 'SIGN-UP', sub: 'No credit card needed' },
-  { icon: '◎', value: '4', label: 'CORE TOOLS', sub: 'Expenses · Income · Budgets · Analytics' },
-  { icon: '♦', value: '100%', label: 'WEB-BASED', sub: 'No install required' },
-  { icon: '♛', value: 'ONE', label: 'DASHBOARD', sub: 'Your whole financial picture' },
+  { value: 'Free', label: 'SIGN UP', sub: 'No credit card needed' },
+  { value: '4', label: 'CORE TOOLS', sub: 'Expenses, Income, Budgets and Analytics' },
+  { value: '100%', label: 'WEB BASED', sub: 'No install required' },
+  { value: 'ONE', label: 'DASHBOARD', sub: 'Your whole financial picture' },
 ];
 
 const Home: React.FC = () => (
   <>
-    {/* ── Hero ── */}
+    {/* Hero */}
     <section className="relative bg-navy-900 text-white overflow-hidden">
-      {/* Background texture overlay */}
       <div className="absolute inset-0 bg-gradient-to-br from-navy-950 via-navy-900 to-navy-800 opacity-90" />
       <div
         className="absolute inset-0 opacity-5"
@@ -89,24 +88,24 @@ const Home: React.FC = () => (
             TAKE CONTROL OF YOUR MONEY
           </h1>
           <p className="text-gold-400 font-semibold text-lg italic mb-4">
-            Omukama Atulize. Enkuba Etutire.
+            Your finances. Your future. Your freedom.
           </p>
           <p className="text-white/70 text-base leading-relaxed max-w-md mb-10">
-            UMET brings all your expenses, income, and budgets into one clean dashboard — so
+            UMET brings all your expenses, income and budgets into one clean dashboard so
             you always know exactly where you stand financially.
           </p>
           <div className="flex flex-col sm:flex-row gap-3">
             <Link
               to="/register"
-              className="inline-flex items-center gap-2 bg-gold-500 hover:bg-gold-600 text-navy-900 font-semibold px-7 py-3.5 rounded transition-colors text-sm uppercase tracking-wide"
+              className="inline-flex items-center justify-center bg-gold-500 hover:bg-gold-600 text-navy-900 font-semibold px-7 py-3.5 rounded transition-colors text-sm uppercase tracking-wide"
             >
-              ♦ Get started free
+              Get started free
             </Link>
             <Link
               to="/features"
-              className="inline-flex items-center gap-2 border border-white/30 hover:border-white/60 text-white font-semibold px-7 py-3.5 rounded transition-colors text-sm uppercase tracking-wide"
+              className="inline-flex items-center justify-center border border-white/30 hover:border-white/60 text-white font-semibold px-7 py-3.5 rounded transition-colors text-sm uppercase tracking-wide"
             >
-              Learn more →
+              Learn more
             </Link>
           </div>
         </div>
@@ -119,25 +118,20 @@ const Home: React.FC = () => (
       </div>
     </section>
 
-    {/* ── Stats strip ── */}
+    {/* Stats strip */}
     <section className="bg-white border-b border-gold-200/60">
       <div className="max-w-6xl mx-auto px-6 py-8 grid grid-cols-2 md:grid-cols-4 divide-x divide-gold-100">
-        {stats.map(({ icon, value, label, sub }) => (
+        {stats.map(({ value, label, sub }) => (
           <div key={label} className="px-6 first:pl-0 last:pr-0 py-2">
-            <div className="flex items-start gap-3">
-              <span className="text-gold-500 text-2xl leading-none mt-0.5">{icon}</span>
-              <div>
-                <p className="font-serif text-2xl font-bold text-gold-500 leading-none">{value}</p>
-                <p className="text-[10px] font-bold uppercase tracking-widest text-navy-900 mt-0.5">{label}</p>
-                <p className="text-xs text-gray-500 mt-0.5">{sub}</p>
-              </div>
-            </div>
+            <p className="font-serif text-2xl font-bold text-gold-500 leading-none">{value}</p>
+            <p className="text-[10px] font-bold uppercase tracking-widest text-navy-900 mt-0.5">{label}</p>
+            <p className="text-xs text-gray-500 mt-0.5">{sub}</p>
           </div>
         ))}
       </div>
     </section>
 
-    {/* ── How it works ── */}
+    {/* How it works */}
     <section className="py-20 px-6 bg-cream">
       <div className="max-w-5xl mx-auto">
         <div className="mb-14">
@@ -156,21 +150,19 @@ const Home: React.FC = () => (
             {
               step: '02',
               title: 'Set your budgets',
-              body: "Define monthly spending limits per category. UMET shows you a live progress bar so you know exactly how much you've used.",
+              body: 'Define monthly spending limits per category. UMET shows you a live progress bar so you know exactly how much you have used.',
             },
             {
               step: '03',
-              title: 'Review & improve',
-              body: 'Check the analytics dashboard each month to spot trends, cut wasteful spending, and plan ahead.',
+              title: 'Review and improve',
+              body: 'Check the analytics dashboard each month to spot trends, cut wasteful spending and plan ahead.',
             },
           ].map(({ step, title, body }) => (
             <div
               key={step}
               className="bg-white border border-gold-100 rounded p-7 relative overflow-hidden"
             >
-              <span
-                className="absolute top-4 right-5 font-serif font-bold text-6xl text-gold-100 select-none leading-none"
-              >
+              <span className="absolute top-4 right-5 font-serif font-bold text-6xl text-gold-100 select-none leading-none">
                 {step}
               </span>
               <p className="text-gold-500 text-xs font-bold uppercase tracking-widest mb-3">{step}</p>
@@ -182,7 +174,7 @@ const Home: React.FC = () => (
       </div>
     </section>
 
-    {/* ── Benefits grid ── */}
+    {/* Benefits grid */}
     <section className="py-20 px-6 bg-white border-t border-gold-100">
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-14">
@@ -211,8 +203,8 @@ const Home: React.FC = () => (
       </div>
     </section>
 
-    {/* ── CTA ── */}
-    <section className="py-20 px-6 bg-navy-900 text-white text-center relative overflow-hidden">
+    {/* CTA */}
+    <section className="py-20 px-6 bg-[#6b0a0a] text-white text-center relative overflow-hidden">
       <div
         className="absolute inset-0 opacity-5"
         style={{

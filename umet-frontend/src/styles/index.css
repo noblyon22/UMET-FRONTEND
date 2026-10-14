@@ -1,6 +1,7 @@
 @import './variables.css';
 @import './components.css';
 @import './responsive.css';
+@import './prose.css';
 
 @tailwind base;
 @tailwind components;

@@ -4,6 +4,7 @@ import Input from '@/components/common/Input';
 import Button from '@/components/common/Button';
 import { useAuth } from '@/hooks/useAuth';
 import { isValidEmail, minLength, passwordsMatch } from '@/utils/validators';
+import { trackEvent } from '@/utils/analytics';
 
 const Register: React.FC = () => {
   const { signUp } = useAuth();
@@ -28,6 +29,7 @@ const Register: React.FC = () => {
     try {
       const { full_name, email, password } = form;
       await signUp({ full_name, email, password });
+      trackEvent('sign_up', { method: 'email' });   // the GA4 conversion (key event)
     } catch (err: any) {
       const detail = err?.response?.data?.detail;
       if (typeof detail === 'string') {

@@ -6,6 +6,13 @@
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
+      // Consent mode: no analytics cookies until the visitor accepts (UK PECR / GDPR).
+      var umetConsent = null;
+      try { umetConsent = localStorage.getItem('umet_cookie_consent'); } catch (e) {}
+      gtag('consent', 'default', {
+        analytics_storage: umetConsent === 'granted' ? 'granted' : 'denied',
+        ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied'
+      });
       gtag('js', new Date());
       gtag('config', 'G-3GR0VT7SVY');
     </script>
@@ -82,6 +89,61 @@
   </head>
   <body>
     <div id="root"></div>
+    <!-- Cookie consent for analytics (kept outside #root so it works on every page) -->
+    <script>
+      (function () {
+        var KEY = 'umet_cookie_consent';
+        function stored() { try { return localStorage.getItem(KEY); } catch (e) { return null; } }
+        function save(v) { try { localStorage.setItem(KEY, v); } catch (e) {} }
+        function clearGaCookies() {
+          document.cookie.split(';').forEach(function (c) {
+            var name = c.split('=')[0].trim();
+            if (name === '_ga' || name.indexOf('_ga_') === 0) {
+              ['', '; domain=.ultimatemove.co.uk', '; domain=ultimatemove.co.uk'].forEach(function (d) {
+                document.cookie = name + '=; Max-Age=0; path=/' + d;
+              });
+            }
+          });
+        }
+        function choose(value) {
+          save(value);
+          if (typeof gtag === 'function') gtag('consent', 'update', { analytics_storage: value });
+          if (value === 'denied') clearGaCookies();
+          render();
+        }
+        function render() {
+          var old = document.getElementById('umet-consent');
+          if (old) old.remove();
+          var box = document.createElement('div');
+          box.id = 'umet-consent';
+          box.setAttribute('role', 'region');
+          box.setAttribute('aria-label', 'Cookie settings');
+          if (stored()) {
+            box.innerHTML = '<button type="button" style="font:12px system-ui,sans-serif;background:#0f1650;color:#f5f0e8;' +
+              'border:1px solid #c9a227;border-radius:999px;padding:6px 12px;cursor:pointer">Cookie settings</button>';
+            box.style.cssText = 'position:fixed;left:12px;bottom:12px;z-index:2147483000';
+            box.firstChild.onclick = function () { save(''); try { localStorage.removeItem(KEY); } catch (e) {} render(); };
+          } else {
+            box.style.cssText = 'position:fixed;left:12px;right:12px;bottom:12px;z-index:2147483000;max-width:560px;margin:0 auto;' +
+              'background:#0f1650;color:#f5f0e8;border:1px solid #c9a227;border-radius:12px;padding:16px;' +
+              'font:14px/1.5 system-ui,sans-serif;box-shadow:0 8px 30px rgba(0,0,0,.35)';
+            box.innerHTML = '<p style="margin:0 0 12px">We use Google Analytics cookies to understand how people find ' +
+              'and use UMET. They are only set if you accept, and you can change your choice at any time.</p>' +
+              '<div style="display:flex;gap:8px;flex-wrap:wrap">' +
+              '<button type="button" data-v="granted" style="background:#c9a227;color:#0f1650;border:0;border-radius:8px;' +
+              'padding:8px 16px;font-weight:600;cursor:pointer">Accept analytics</button>' +
+              '<button type="button" data-v="denied" style="background:transparent;color:#f5f0e8;border:1px solid #f5f0e8;' +
+              'border-radius:8px;padding:8px 16px;cursor:pointer">Reject</button></div>';
+            box.querySelectorAll('button').forEach(function (b) {
+              b.onclick = function () { choose(b.getAttribute('data-v')); };
+            });
+          }
+          document.body.appendChild(box);
+        }
+        if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', render);
+        else render();
+      })();
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

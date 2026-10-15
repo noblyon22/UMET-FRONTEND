@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { getPublishedContent } from '@/services/contentService';
+import type { PublishedContent } from '@/types/content';
 
 const benefits = [
   {
@@ -65,7 +67,35 @@ const stats = [
   { value: 'ONE', label: 'DASHBOARD', sub: 'Your whole financial picture' },
 ];
 
-const Home: React.FC = () => (
+const Home: React.FC = () => {
+  const [content, setContent] = useState<PublishedContent | null>(null);
+
+  useEffect(() => {
+    let mounted = true;
+
+    getPublishedContent('home')
+      .then((data) => {
+        if (mounted) {
+          setContent(data);
+        }
+      })
+      .catch(() => {
+        // Keep the existing landing-page copy if published content is unavailable.
+      });
+
+    return () => {
+      mounted = false;
+    };
+  }, []);
+
+  const heroHeading = content?.hero_heading || 'TAKE CONTROL OF YOUR MONEY';
+  const heroSubheading =
+    content?.hero_subheading || 'Your finances. Your future. Your freedom.';
+  const heroBody =
+    content?.body_content ||
+    'UMET brings all your expenses, income and budgets into one clean dashboard so you always know exactly where you stand financially.';
+
+  return (
   <>
     {/* Hero */}
     <section className="relative bg-navy-900 text-white overflow-hidden">
@@ -85,14 +115,13 @@ const Home: React.FC = () => (
             A tool. A plan. A lasting legacy.
           </p>
           <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-5 text-white">
-            TAKE CONTROL OF YOUR MONEY
+            {heroHeading}
           </h1>
           <p className="text-gold-400 font-semibold text-lg italic mb-4">
-            Your finances. Your future. Your freedom.
+            {heroSubheading}
           </p>
           <p className="text-white/70 text-base leading-relaxed max-w-md mb-10">
-            UMET brings all your expenses, income and budgets into one clean dashboard so
-            you always know exactly where you stand financially.
+            {heroBody}
           </p>
           <div className="flex flex-col sm:flex-row gap-3">
             <Link
@@ -229,5 +258,6 @@ const Home: React.FC = () => (
     </section>
   </>
 );
+};
 
 export default Home;

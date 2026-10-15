@@ -7,6 +7,7 @@ const landingNavItems = [
   { to: '/features', label: 'Features' },
   { to: '/pricing', label: 'Pricing' },
   { to: '/about', label: 'About' },
+  { to: '/resources', label: 'Resources' },
 ];
 
 const LandingLayout: React.FC = () => {

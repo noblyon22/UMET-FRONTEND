@@ -26,6 +26,12 @@ const Home     = lazy(() => import('@/pages/landing/Home'));
 const Features = lazy(() => import('@/pages/landing/Features'));
 const Pricing  = lazy(() => import('@/pages/landing/Pricing'));
 const About    = lazy(() => import('@/pages/landing/About'));
+const PublishedContentPage = lazy(
+  () => import('@/pages/landing/PublishedContentPage')
+);
+const ContentIndexPage = lazy(
+  () => import('@/pages/landing/ContentIndexPage')
+);
 
 /** Sends unauthenticated visitors to /home; authenticated ones to /dashboard. */
 const RootRedirect: React.FC = () => {
@@ -45,29 +51,31 @@ const AppRoutes: React.FC = () => (
 
         {/* ── Public landing pages — no auth required ── */}
         <Route element={<LandingLayout />}>
-          <Route path="/home"     element={<Home />} />
+          <Route path="/home" element={<Home />} />
           <Route path="/features" element={<Features />} />
-          <Route path="/pricing"  element={<Pricing />} />
-          <Route path="/about"    element={<About />} />
+          <Route path="/pricing" element={<Pricing />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/resources" element={<ContentIndexPage />} />
+          <Route path="/:pageSlug" element={<PublishedContentPage />} />
         </Route>
 
         {/* ── Auth routes — redirect to /dashboard if already authenticated ── */}
         <Route element={<PublicRoute />}>
-          <Route path="/login"           element={<Login />} />
-          <Route path="/register"        element={<Register />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
         </Route>
 
         {/* ── App routes — redirect to /login if not authenticated ── */}
         <Route element={<ProtectedRoute />}>
-          <Route path="/dashboard"      element={<Dashboard />} />
-          <Route path="/expenses"       element={<Expenses />} />
-          <Route path="/expenses/:id"   element={<ExpenseDetails />} />
-          <Route path="/income"         element={<Income />} />
-          <Route path="/budgets"        element={<Budgets />} />
-          <Route path="/categories"     element={<Categories />} />
-          <Route path="/analytics"      element={<Analytics />} />
-          <Route path="/profile"        element={<Profile />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/expenses" element={<Expenses />} />
+          <Route path="/expenses/:id" element={<ExpenseDetails />} />
+          <Route path="/income" element={<Income />} />
+          <Route path="/budgets" element={<Budgets />} />
+          <Route path="/categories" element={<Categories />} />
+          <Route path="/analytics" element={<Analytics />} />
+          <Route path="/profile" element={<Profile />} />
         </Route>
 
         <Route path="*" element={<NotFound />} />

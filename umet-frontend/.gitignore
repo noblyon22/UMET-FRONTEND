@@ -10,3 +10,6 @@ Thumbs.db
 
 # TypeScript build cache
 *.tsbuildinfo
+
+# Local build backups made before each deploy
+dist.bak*/
